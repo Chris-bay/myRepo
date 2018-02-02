@@ -4,6 +4,9 @@ import jdk.nashorn.internal.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -12,12 +15,14 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class Quiz {
-
     ArrayList<Question> questions = new ArrayList<>();
+    String datapath = "data/";
 
-    String datapath = "Quiz.json";
+    String id;
+    String title;
 
     public Question createNewQuestion(String question, String[] answers){
+        /*
         String id = question + questions.size();
 
         MessageDigest md = null;
@@ -34,8 +39,10 @@ public class Quiz {
         for (int i = 0; i < byteData.length; i++) {
             sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
         }
+        sb.toString();
+        */
 
-        Question q = new Question(sb.toString(), question, answers);
+        Question q = new Question(questions.size(), question, answers);
 
         questions.add(q);
 
@@ -52,16 +59,19 @@ public class Quiz {
         return retq;
     }
 
-    public void save(){
+    public void save() {
         JSONArray array = new JSONArray();
+        ObjectMapper mapper = new ObjectMapper();
 
         array.addAll(questions);
 
-        try (FileWriter file = new FileWriter(datapath)) {
+        try (FileWriter file = new FileWriter(datapath + id)) {
 
-            file.write(array.toJSONString());
+            file.write(mapper.defaultPrettyPrintingWriter().writeValueAsString(array));
             file.flush();
 
+        } catch (FileNotFoundException e) {
+            System.out.println("File not Found");
         } catch (IOException e) {
             e.printStackTrace();
         }

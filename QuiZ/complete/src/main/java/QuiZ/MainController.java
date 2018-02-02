@@ -23,12 +23,21 @@ public class MainController {
     }
 
     @RequestMapping("/newQuiz")
-    public String charts(){
+    public String newQuiz(){
         return "newQuiz";
     }
-
+    @RequestMapping("/newQuiz")
+    public String Quiz(){
+        return "Quiz";
+    }
+    @RequestMapping("/newQuiz")
+    public String Participate(){
+        return "Participate";
+    }
     @RequestMapping("/login")
-    public String tables(){
+    public String login(){
         return "login";
     }
+
+
 }

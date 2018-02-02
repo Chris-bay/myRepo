@@ -1,0 +1,677 @@
+{
+  "44" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "45" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "46" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "47" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "48" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "49" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "50" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "51" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "52" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "53" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "10" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "54" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "11" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "55" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "12" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "56" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "13" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "57" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "14" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "58" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "15" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "59" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "16" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "17" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "18" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "19" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "0" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.644979919678715E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "1" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.644979919678715E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "2" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.644979919678715E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "3" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.644979919678715E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "4" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.644979919678715E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "5" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.644979919678715E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "6" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6460704607046068E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "7" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6460704607046068E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "8" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6460704607046068E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "9" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6460704607046068E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "60" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "61" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "62" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "63" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "20" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "64" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "21" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "65" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "22" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "66" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "23" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "67" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "24" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "68" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "25" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "69" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "26" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "27" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "28" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6485596707818933E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "29" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "74" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "70" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "71" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "72" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "73" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6565400843881857E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "30" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "31" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "32" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "33" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "34" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "35" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "36" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "37" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "38" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "39" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "40" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "41" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "42" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  },
+  "43" : {
+    "validShares" : 0,
+    "currentHashRate" : 0.0,
+    "staleShares" : 0,
+    "activeWorkers" : 0,
+    "averageHashRate" : 2.6552777777777784E7,
+    "invalidShares" : 0,
+    "unpaid" : null
+  }
+}

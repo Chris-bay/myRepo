@@ -1,0 +1,9 @@
+{
+  "validShares" : 0,
+  "currentHashRate" : 0.0,
+  "staleShares" : 0,
+  "activeWorkers" : 0,
+  "averageHashRate" : 2.6565400843881857E7,
+  "invalidShares" : 0,
+  "unpaid" : null
+}

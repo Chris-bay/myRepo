@@ -12,8 +12,11 @@
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom fonts for this template-->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Datatables-->
+    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet"/>
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -24,21 +27,23 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <h1>Blank</h1>
+                <h1>Overview of all existing Quizzes</h1>
                 <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
-                <button class="btn btn-primary" onclick="loadData()">load data</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-12" id="prize">
-
+            <div class="col-12">
+                <table id="quizzes" class="display" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Questions</th>
+                    </tr>
+                    </thead>
+                </table>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12" id="block">
 
-            </div>
-        </div>
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -58,9 +63,11 @@
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Datatables -->
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin.min.js"></script>
-    <script src="../js/index.js"></script>
+    <script src="../js/quizzes.js"></script>
 </div>
 </body>
 

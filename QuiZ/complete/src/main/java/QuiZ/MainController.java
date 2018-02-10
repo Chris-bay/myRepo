@@ -1,6 +1,6 @@
 package QuiZ;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import QuiZ.Questions.QuestionType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,20 +17,21 @@ public class MainController {
     @RequestMapping("/index")
     public String index(){
         String[] s = {"test!", "test..."};
-        q.createNewQuestion("test?", s);
+        q.createNewQuestion(QuestionType.MULTIPLECHOICE,"test?", s, 0);
         q.save();
         return "index";
     }
+
 
     @RequestMapping("/newQuiz")
     public String newQuiz(){
         return "newQuiz";
     }
-    @RequestMapping("/newQuiz")
+    @RequestMapping("/quiz")
     public String Quiz(){
         return "Quiz";
     }
-    @RequestMapping("/newQuiz")
+    @RequestMapping("/participate")
     public String Participate(){
         return "Participate";
     }

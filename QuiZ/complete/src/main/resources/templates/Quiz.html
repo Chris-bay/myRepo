@@ -13,7 +13,8 @@
     <!-- Custom fonts for this template-->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- Datatables-->
-    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin.css" rel="stylesheet"/>
 
@@ -25,19 +26,37 @@
      th:include="navigation :: navigation"></nav>
 <div class="content-wrapper">
     <div class="container-fluid">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Home</a></li>
+                <li class="breadcrumb-item"><a href="quiz">Quiz</a></li>
+            </ol>
+        </nav>
+
         <div class="row">
             <div class="col-12">
                 <h1>Overview of all existing Quizzes</h1>
-                <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <table id="quizzes" class="display" cellspacing="0" width="100%">
+                <a class="btn btn-success" href="../newQuiz">Create new QuiZ</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table id="quizzes" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Questions</th>
+                        <th>Title</th>
+                        <th>Change</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                 </table>
@@ -64,7 +83,7 @@
     <!-- Core plugin JavaScript-->
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Datatables -->
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="../js/sb-admin.min.js"></script>
     <script src="../js/quizzes.js"></script>

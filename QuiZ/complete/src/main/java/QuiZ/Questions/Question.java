@@ -20,7 +20,7 @@ public class Question {
     String media;
     Integer qorder;
 
-    public Question(){};
+    public Question(){}
 
     public Integer getAnswer() {
         return answer;
@@ -31,7 +31,7 @@ public class Question {
     }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public String getQuestionText() {
@@ -50,12 +50,13 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(QuestionType type,String question, String[] answers, Integer rightAnswer, String media) {
+    public Question(QuestionType type,String question, String[] answers, Integer rightAnswer, String media, Integer points) {
         this.questionText = question;
         this.answers = answers;
         this.answer = rightAnswer;
         this.type = type;
         this.media = media;
+        this.points = points;
     }
 
     public void setQuestionText(String questionText) {

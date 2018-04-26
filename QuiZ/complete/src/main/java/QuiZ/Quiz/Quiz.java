@@ -13,23 +13,21 @@ public class Quiz {
 
     //<Question> questions = new ArrayList<>();
 
-    @Autowired
-    public ArrayList<Question> questions = new ArrayList<>();
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
 
-    public Question addQuestion(Question q){
-        questions.add(q);
+    private ArrayList<Integer> questionIds = new ArrayList<Integer>();
+
+    public Integer addQuestion(Integer q){
+        this.questionIds.add(q);
         return q;
     }
 
-    public boolean hasQuestion(Question question){
-        for (Question q : questions){
-            if (q.equals(question)){
+    public boolean hasQuestion(Integer questionId){
+        for (Integer q : questionIds){
+            if (q.equals(questionId)){
                 return true;
             }
         }
@@ -38,38 +36,15 @@ public class Quiz {
 
     public Quiz(String title){
         this.title = title;
+        this.questionIds = new ArrayList<Integer>();
     }
 
-
-/*
-    public Optional<Question> findQuestion(Integer id){
-        Optional<Question> retQuestion = Optional.empty();
-        for (Question q:questions){
-            if (Objects.equals(q.getId(), id)){
-                retQuestion = Optional.of(q);
-            }
-        }
-        return retQuestion;
-    }
-*/
-    public Optional<Question> changeQuestion(Integer id, Question question){
-        Optional<Question> foundQuestion = Optional.empty();
-        for (Question q:questions) {
-            if (q.getId().equals(id)){
-                int index = questions.indexOf(q);
-                questions.remove(index);
-                questions.add(question);
-                foundQuestion = Optional.of(q);
-            }
-        }
-        return foundQuestion;
-    }
-
-    public ArrayList<Question> getQuestions() {
-        return questions;
+    public ArrayList<Integer> getQuestions() {
+        return questionIds;
     }
 
     public Quiz(){
+        this.questionIds = new ArrayList<Integer>();
     }
 
     public Integer getId() {

@@ -81,7 +81,7 @@ public class MainController {
 
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
     public String addQuestion(@ModelAttribute("form") @Valid FormNewQuestion form){
-        System.out.println(form.quizId);
+        /*System.out.println(form.quizId);
         System.out.println(form.questionText);
         System.out.println(form.answer1);
         System.out.println(form.answer2);
@@ -89,27 +89,35 @@ public class MainController {
         System.out.println(form.answer4);
         System.out.println(form.answer);
         System.out.println(form.media);
-        System.out.println(form.points);
+        System.out.println(form.points);*/
         form.convertType();
-        System.out.println(form.type);
+        //System.out.println(form.type);
         String[] answers = {form.answer1, form.answer2, form.answer3, form.answer4};
-        Question question = new Question(/*form.type, form.questionText, answers, form.answer, form.media*/);
-        //question.setPoints(form.points);
 
-        System.out.println("ID: " + question.getId());
-        Question q = questionRepo.save(question);
-        System.out.println(q.getId());
+        Question q = questionRepo.save(new Question(form.type, form.questionText, answers, form.answer, form.media, form.points));
+        //System.out.println(q.getId());
 
         Quiz quiz = quizRepo.findById(form.getQuizId()).get();
-        quiz.addQuestion(question);
+        quiz.addQuestion(q.getId());
         quizRepo.save(quiz);
 
         return "redirect:quiz";
     }
 
+    @RequestMapping("/deleteQuestion/{id}")
+    public String deleteQuestion(@PathVariable("id")Integer id){
+        System.out.println("trying to delete Question with id: " + id.toString());
+        questionRepo.deleteById(id);
+        return "redirect:../quiz";
+    }
+
     @RequestMapping("/test")
     public String test(){
-        questionRepo.save(new Question());
+
+        Question q = questionRepo.save(new Question());
+
+        System.out.println(questionRepo.findAll());
+        //questionRepo.save(new Question());
         return "redirect:index";
     }
     @RequestMapping("/quiz")

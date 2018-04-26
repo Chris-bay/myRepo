@@ -1,5 +1,6 @@
 package QuiZ.Controller;
 
+import QuiZ.Questions.Question;
 import QuiZ.Questions.QuestionRepo;
 import QuiZ.Quiz.QuizRepo;
 import com.google.gson.Gson;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 public class RestAPI {
@@ -35,7 +39,12 @@ public class RestAPI {
     @ResponseBody
     public String getQuestionsOfQuiz(@PathVariable("id")Integer id){
         if (quizRepo.findById(id).isPresent()){
-            return gson.toJson(quizRepo.findById(id).get().getQuestions());
+            ArrayList<Question> questions = new ArrayList<>();
+            for (Integer questionId: quizRepo.findById(id).get().getQuestions()){
+                Optional<Question> q = questionRepo.findById(questionId);
+                q.ifPresent(questions::add);
+            }
+            return gson.toJson(questions);
         }else{
             return gson.toJson(null);
         }

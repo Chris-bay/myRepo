@@ -60,6 +60,7 @@
                             <th>Right Answer</th>
                             <th>Media link</th>
                             <th>Points</th>
+                            <th>Edit</th>
                         </tr>
                         </thead>
                     </table>
@@ -125,13 +126,13 @@
                             <label for="Answer4">Answer 4</label>
                             <input type="text" class="form-control" id="Answer4" th:field="*{answer4}"/>
                         </div>
-                        <label for="RightAnswer">Question type</label>
+                        <label for="RightAnswer">Right Answer</label>
                         <select class="form-control" id="RightAnswer" name="RightAnswer" th:field="*{answer}"
                                 required="yes">
-                            <option value="0">1</option>
-                            <option value="1">2</option>
-                            <option value="2">3</option>
-                            <option value="3">4</option>
+                            <option value="0">Answer 1</option>
+                            <option value="1">Answer 2</option>
+                            <option value="2">Answer 3</option>
+                            <option value="3">Answer 4</option>
                         </select>
                         <div class="form-group">
                             <label for="Media">Media Link</label>
@@ -145,7 +146,80 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="addQuestionModal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editQuestionModal" tabindex="-1" role="dialog" aria-labelledby="editQuestionModalLabel" aria-hidden="true" style="min-width: 50%">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editQuestionModalLabel">Change a question</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" role="form" id="ChangeQuestionForm" th:action="@{/editQuestion}"
+                          th:object="${FormChangeQuestion}">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="EQuizId" th:field="*{quizId}" required="yes" style="display: none"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="EQuestionText">Question text</label>
+                            <input type="text" class="form-control" id="EQuestionText" th:field="*{questionText}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="EQuestionType">Question type</label>
+                            <select class="form-control" id="EQuestionType" name="EQuestionType" th:field="*{stype}"
+                                    required="yes">
+                                <option value="0">Multiplechoice</option>
+                                <option value="1">Guess</option>
+                                <option value="2">Word/Name</option>
+                                <option value="3">Multiplechoice (Media)</option>
+                                <option value="4">Guess (Media)</option>
+                                <option value="5">Word/Name (Media)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="EAnswer1">Answer 1</label>
+                            <input type="text" class="form-control" id="EAnswer1" th:field="*{answer1}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="EAnswer2">Answer 2</label>
+                            <input type="text" class="form-control" id="EAnswer2" th:field="*{answer2}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="EAnswer3">Answer 3</label>
+                            <input type="text" class="form-control" id="EAnswer3" th:field="*{answer3}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="EAnswer4">Answer 4</label>
+                            <input type="text" class="form-control" id="EAnswer4" th:field="*{answer4}"/>
+                        </div>
+                        <label for="ERightAnswer">Right Answer</label>
+                        <select class="form-control" id="ERightAnswer" name="ERightAnswer" th:field="*{answer}"
+                                required="yes">
+                            <option value="0">Answer 1</option>
+                            <option value="1">Answer 2</option>
+                            <option value="2">Answer 3</option>
+                            <option value="3">Answer 4</option>
+                        </select>
+                        <div class="form-group">
+                            <label for="EMedia">Media Link</label>
+                            <input type="text" class="form-control" id="EMedia" th:field="*{media}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="EPoints">Points</label>
+                            <input type="number" class="form-control" id="EPoints" th:field="*{points}"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

@@ -50,6 +50,12 @@ public class RestAPI {
         }
     }
 
+    @RequestMapping("/api/getQuestion/{id}")
+    @ResponseBody
+    public String getQuestion(@PathVariable("id")Integer id){
+        return gson.toJson(questionRepo.findById(id).get());
+    }
+
     @ResponseBody
     public String getQuiz(@PathVariable("id")Integer id){
         if (quizRepo.findById(id).isPresent()){

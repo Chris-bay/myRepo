@@ -61,6 +61,7 @@ public class MainController {
         formChangeQuiz.setTitle(quizRepo.findById(id).get().getTitle());
         formChangeQuiz.setId(quizRepo.findById(id).get().getId());
         model.addAttribute("FormChangeQuiz", formChangeQuiz);
+        model.addAttribute("FormChangeQuestion", new FormChangeQuestion());
         return "changeQuiz";
     }
 
@@ -81,21 +82,11 @@ public class MainController {
 
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
     public String addQuestion(@ModelAttribute("form") @Valid FormNewQuestion form){
-        /*System.out.println(form.quizId);
-        System.out.println(form.questionText);
-        System.out.println(form.answer1);
-        System.out.println(form.answer2);
-        System.out.println(form.answer3);
-        System.out.println(form.answer4);
-        System.out.println(form.answer);
-        System.out.println(form.media);
-        System.out.println(form.points);*/
         form.convertType();
-        //System.out.println(form.type);
+
         String[] answers = {form.answer1, form.answer2, form.answer3, form.answer4};
 
         Question q = questionRepo.save(new Question(form.type, form.questionText, answers, form.answer, form.media, form.points));
-        //System.out.println(q.getId());
 
         Quiz quiz = quizRepo.findById(form.getQuizId()).get();
         quiz.addQuestion(q.getId());

@@ -78,13 +78,74 @@ function  ready(quizId){
                 {
                     "data": "answer",
                     "render": function (data, answer, row, meta) {
-                        var ca = row.answers[answer];
+                        var ca = row.answers[row.answer];
                         return ca;
                     }
                 },
                 {"data":"media"},
-                {"data":"points"}
+                {"data":"points"},
+                {
+                    "data": "id",
+                    "render": function (data, id, row, meta) {
+                        var a = '<button class="btn btn-success" data-toggle="modal" data-target="#editQuestionModal" onclick="changeQuestion(' + data + ')"><i class="fa fa-fw fa-edit"></i></button>';
+                        return a;
+                    }
+                }
             ],
         "order": [[1, 'asc']]
     });
+}
+
+function changeQuestion(id){
+    /*$.ajax({
+        url: "/api/getQuestion/" + id
+    }).then(function (js) {
+        console.log(js);
+        console.log(js.id);
+        console.log(js.type);
+        //document.getElementById("EQuizId").value = js.id;
+    });*/
+
+    $.getJSON( "/api/getQuestion/" + id, function( json ) {
+        //console.log( "JSON Data: " + json.id );
+        document.getElementById("EQuizId").value = json.id.toString();
+        document.getElementById("EQuestionText").value = json.questionText;
+
+        if (json.questionText == "MULTIPLECHOICE"){
+            document.getElementById("EQuestionType").selectedIndex = 0;
+        }else if (json.questionText == "GUESS"){
+            document.getElementById("EQuestionType").selectedIndex = 1;
+        }else if (json.questionText == "STRING"){
+             document.getElementById("EQuestionType").selectedIndex = 2;
+        }else if (json.questionText == "MMULTIPLECHOICE"){
+             document.getElementById("EQuestionType").selectedIndex = 3;
+        }else if (json.questionText == "MGUESS"){
+             document.getElementById("EQuestionType").selectedIndex = 4;
+        }else{
+             document.getElementById("EQuestionType").selectedIndex = 5;
+        }
+
+        document.getElementById("EAnswer1").value = json.answers[0];
+        document.getElementById("EAnswer2").value = json.answers[1];
+        document.getElementById("EAnswer3").value = json.answers[2];
+        document.getElementById("EAnswer4").value = json.answers[3];
+
+        if (json.answer == 0){
+            document.getElementById("ERightAnswer").selectedIndex = 0;
+        }else if (json.answer == 1){
+            document.getElementById("ERightAnswer").selectedIndex = 1;
+        }else if (json.answer == 2){
+             document.getElementById("ERightAnswer").selectedIndex = 2;
+        }else {
+             document.getElementById("ERightAnswer").selectedIndex = 3;
+        }
+
+        document.getElementById("EMedia").value = json.media;
+        document.getElementById("EPoints").value = json.points;
+
+    });
+
+
+    //{"id":2,"type":"MULTIPLECHOICE","points":1,"questionText":"What is 1+1?","answers":["0","1","2","3"],"answer":2,"media":"none"}
+
 }

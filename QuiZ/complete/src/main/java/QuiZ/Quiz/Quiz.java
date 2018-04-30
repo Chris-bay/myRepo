@@ -1,12 +1,8 @@
 package QuiZ.Quiz;
 
-import QuiZ.Questions.*;
-import com.sun.istack.internal.Nullable;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Entity
 public class Quiz {

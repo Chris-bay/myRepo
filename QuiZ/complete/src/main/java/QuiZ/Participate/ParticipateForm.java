@@ -6,7 +6,6 @@ public class ParticipateForm {
     private String id;
     private String errorMessage;
 
-    private Integer number;
     private Integer question;
     private Integer answer;
 
@@ -32,5 +31,21 @@ public class ParticipateForm {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    public Integer getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Integer question) {
+        this.question = question;
+    }
+
+    public Integer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Integer answer) {
+        this.answer = answer;
     }
 }

@@ -2,6 +2,7 @@ package QuiZ.Controller;
 
 import QuiZ.Questions.Question;
 import QuiZ.Questions.QuestionRepo;
+import QuiZ.Quiz.Quiz;
 import QuiZ.Quiz.QuizRepo;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,24 @@ public class RestAPI {
     @ResponseBody
     public String getQuestion(@PathVariable("id")Integer id){
         return gson.toJson(questionRepo.findById(id).get());
+    }
+
+    @RequestMapping("/api/getCurrentQuestion/{id}")
+    @ResponseBody
+    public String getCurrentQuestion(@PathVariable("id")Integer id){
+        Integer momIndex;
+
+        if (quizRepo.findById(id).isPresent()){
+            Quiz q = quizRepo.findById(id).get();
+            momIndex = q.getQuestions().get(q.getCurrentIndex());
+            if (questionRepo.findById(momIndex).isPresent()){
+                return gson.toJson(questionRepo.findById(momIndex).get());
+            }else {
+                return gson.toJson(new Integer[] {});
+            }
+        }else{
+            return gson.toJson(new Integer[] {});
+        }
     }
 
     @ResponseBody

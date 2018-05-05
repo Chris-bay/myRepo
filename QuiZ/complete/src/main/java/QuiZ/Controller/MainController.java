@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.jws.WebParam;
 import javax.validation.Valid;
@@ -43,11 +46,6 @@ public class MainController {
 
     @RequestMapping("/index")
     public String index(){
-        /*
-        String[] a = {"0", "1", "2", "3"};
-        Question q = new Question(QuestionType.MULTIPLECHOICE, "1+1?", a, 2, "");
-        questionRepo.save(q);
-        System.out.println(questionRepo.findAll().toString());*/
         return "index";
     }
 
@@ -59,9 +57,8 @@ public class MainController {
     }
     @RequestMapping(value = "/newQuiz/add", method = RequestMethod.POST)
     public String addNewQuiz(@ModelAttribute("form") @Valid FormNewQuiz form){
-
         Quiz q = quizRepo.save(new Quiz(form.getTitle()));
-        System.out.println("created new Quiz");
+        log.info("created new Quiz");
         return "redirect:../changeQuiz/" + q.getId().toString();
     }
 
@@ -73,13 +70,7 @@ public class MainController {
         formChangeQuiz.setId(quizRepo.findById(id).get().getId());
         model.addAttribute("FormChangeQuiz", formChangeQuiz);
         model.addAttribute("FormChangeQuestion", new FormChangeQuestion());
-        //System.out.println("Debug");
-        //if (redirect){
-        //    redirect = false;
-        //    return "redirect:changeQuiz";
-        //}else {
-            return "changeQuiz";
-        //}
+        return "changeQuiz";
     }
 
     @RequestMapping(value = "/changeQuiz/change", method = RequestMethod.POST)
@@ -95,7 +86,7 @@ public class MainController {
 
     @RequestMapping("/deleteQuiz/{id}")
     public String deleteQuiz(@PathVariable("id")Integer id){
-        System.out.println("trying to delete QuiZ with id: " + id.toString());
+        log.info("trying to delete QuiZ with id: " + id.toString());
         if (quizRepo.findById(id).isPresent()){
             for (Integer i : quizRepo.findById(id).get().getQuestions()) {
                 //questionRepo.deleteById(i);
@@ -129,7 +120,7 @@ public class MainController {
 
     @RequestMapping("/deleteQuestion/{quizId}/{questionId}")
     public String deleteQuestion(@PathVariable("quizId")Integer quizId, @PathVariable("questionId")Integer questionId){
-        System.out.println("trying to delete Question with id: " + questionId.toString());
+        log.info("trying to delete Question with id: " + questionId.toString());
         try {
             questionRepo.deleteById(questionId);
             if(quizRepo.findById(quizId).isPresent()){
@@ -177,15 +168,32 @@ public class MainController {
     }
 
     @RequestMapping(value = "/participate", method = RequestMethod.POST)
-    public String participatePost(@ModelAttribute("form") @Valid ParticipateForm form, Model model){
+    public ModelAndView participatePost(@ModelAttribute("form") @Valid ParticipateForm form, Model model,RedirectAttributes redir){
+        ModelAndView modelAndView = new ModelAndView();
         if (quizRepo.findById(Integer.parseInt(form.getId())).isPresent()){
             model.addAttribute("ParticipateForm", form);
-            return "redirect:participate/" + form.getId();
+            modelAndView.setViewName("redirect:participate/" + form.getId());
+            redir.addFlashAttribute("ParticipateForm", form);
+            return modelAndView;
+            //return "redirect:participate/" + form.getId();
         }else {
             form.setErrorMessage("Could not find the given Quiz");
             model.addAttribute("ParticipateForm", form);
-            return "startParticipate";
+            modelAndView.setViewName("redirect:participate/" + form.getId());
+            redir.addFlashAttribute("ParticipateForm", form);
+            return modelAndView;
         }
+    }
+
+    @RequestMapping("/next/{id}")
+    public String next(@PathVariable("id") String id, @ModelAttribute("form") @Valid ParticipateForm form, Model model){
+        if (quizRepo.findById(Integer.parseInt(id)).isPresent()) {
+            Quiz q = quizRepo.findById(Integer.parseInt(id)).get();
+            q.setCurrentIndex(q.getCurrentIndex()+1);
+            quizRepo.save(q);
+        }
+        model.addAttribute("ParticipateForm", form);
+        return "redirect:participate/" + form.getId();
     }
 
     @RequestMapping("/participate/{id}")

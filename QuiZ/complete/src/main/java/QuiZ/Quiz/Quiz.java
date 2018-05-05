@@ -14,7 +14,8 @@ public class Quiz {
     private Integer id;
     private String title;
 
-    private ArrayList<Integer> questionIds = new ArrayList<Integer>();
+    private ArrayList<Integer> questionIds = new ArrayList<>(
+    );
 
     public Integer addQuestion(Integer q){
         this.questionIds.add(q);

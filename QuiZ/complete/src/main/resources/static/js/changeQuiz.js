@@ -1,3 +1,4 @@
+
 function  ready(quizId){
     var dt = $('#questionTable').DataTable({
             ajax: {
@@ -90,6 +91,13 @@ function  ready(quizId){
                         var a = '<button class="btn btn-success" data-toggle="modal" data-target="#editQuestionModal" onclick="changeQuestion(' + data + ')"><i class="fa fa-fw fa-edit"></i></button>';
                         return a;
                     }
+                },
+                {
+                    "data": "id",
+                    "render": function (data, id, row, meta) {
+                        var a = '<button class="btn btn-danger" onclick="deleteQuestion(' + data + ')"><i class="fa fa-fw fa-close"></i></button>';
+                        return a;
+                    }
                 }
             ],
         "order": [[1, 'asc']]
@@ -107,19 +115,21 @@ function changeQuestion(id){
     });*/
 
     $.getJSON( "/api/getQuestion/" + id, function( json ) {
-        //console.log( "JSON Data: " + json.id );
-        document.getElementById("EQuizId").value = json.id.toString();
+
+        console.log(json.id);
+
+        document.getElementById("EQuestionId").value = json.id;
         document.getElementById("EQuestionText").value = json.questionText;
 
-        if (json.questionText == "MULTIPLECHOICE"){
+        if (json.type == "MULTIPLECHOICE"){
             document.getElementById("EQuestionType").selectedIndex = 0;
-        }else if (json.questionText == "GUESS"){
+        }else if (json.type == "GUESS"){
             document.getElementById("EQuestionType").selectedIndex = 1;
-        }else if (json.questionText == "STRING"){
+        }else if (json.type == "STRING"){
              document.getElementById("EQuestionType").selectedIndex = 2;
-        }else if (json.questionText == "MMULTIPLECHOICE"){
+        }else if (json.type == "MMULTIPLECHOICE"){
              document.getElementById("EQuestionType").selectedIndex = 3;
-        }else if (json.questionText == "MGUESS"){
+        }else if (json.type == "MGUESS"){
              document.getElementById("EQuestionType").selectedIndex = 4;
         }else{
              document.getElementById("EQuestionType").selectedIndex = 5;
@@ -142,10 +152,35 @@ function changeQuestion(id){
 
         document.getElementById("EMedia").value = json.media;
         document.getElementById("EPoints").value = json.points;
-
     });
+}
 
+function deleteQuestion(id){
+    Pinger_ping("localhost:8080/deleteQuestion/" + document.getElementById("AQuizId").value + "/" + id);
+    window.setTimeout(partB(),340);
+}
 
-    //{"id":2,"type":"MULTIPLECHOICE","points":1,"questionText":"What is 1+1?","answers":["0","1","2","3"],"answer":2,"media":"none"}
+function partB(){
+    $('#questionTable').DataTable().ajax.reload();
+}
 
+function Pinger_ping(ip) {
+
+  if(!this.inUse) {
+
+    this.inUse = true;
+    this.ip = ip;
+
+    var _that = this;
+
+    this.img = new Image();
+
+    this.img.onload = function() {};
+    this.img.onerror = function() {};
+
+    this.start = new Date().getTime();
+    this.img.src = "http://" + ip;
+    this.timer = setTimeout(function() {}, 1500);
+
+  }
 }

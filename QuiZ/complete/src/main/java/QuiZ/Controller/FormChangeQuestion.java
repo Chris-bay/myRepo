@@ -4,6 +4,7 @@ import QuiZ.Questions.QuestionType;
 
 public class FormChangeQuestion {
     Integer quizId;
+    Integer questionId;
     QuestionType type;
     Integer points;
     String questionText;
@@ -16,6 +17,11 @@ public class FormChangeQuestion {
     String media;
     Integer order;
     Integer stype;
+
+    @Override
+    public String toString() {
+        return "" + quizId + " " + questionId;
+    }
 
     public QuestionType getType() {
         return type;
@@ -121,7 +127,22 @@ public class FormChangeQuestion {
         this.quizId = quizId;
     }
 
-    public void convertType() {
+    public QuestionType convertType() {
         this.type = QuestionType.getValue(stype);
+        return this.type;
+    }
+
+    public String[] convertAnswers(){
+        String[] an = {answer1, answer2, answer3, answer4};
+        this.answers = an;
+        return this.answers;
+    }
+
+    public Integer getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
     }
 }

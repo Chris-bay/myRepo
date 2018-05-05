@@ -5,7 +5,10 @@ import QuiZ.Questions.QuestionRepo;
 import QuiZ.Questions.QuestionType;
 import QuiZ.Quiz.Quiz;
 import QuiZ.Quiz.QuizRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.jws.WebParam;
 import javax.validation.Valid;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Controller
@@ -24,6 +30,10 @@ public class MainController {
     QuestionRepo questionRepo;
     @Autowired
     QuizRepo quizRepo;
+
+    Boolean redirect = false;
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/")
     public String indexreroute(){
@@ -62,26 +72,47 @@ public class MainController {
         formChangeQuiz.setId(quizRepo.findById(id).get().getId());
         model.addAttribute("FormChangeQuiz", formChangeQuiz);
         model.addAttribute("FormChangeQuestion", new FormChangeQuestion());
-        return "changeQuiz";
+        //System.out.println("Debug");
+        //if (redirect){
+        //    redirect = false;
+        //    return "redirect:changeQuiz";
+        //}else {
+            return "changeQuiz";
+        //}
     }
 
     @RequestMapping(value = "/changeQuiz/change", method = RequestMethod.POST)
     public String changeQuiz(@ModelAttribute("form") @Valid FormChangeQuiz form, Model model) {
         model.addAttribute("FormNewQuestion", new FormNewQuestion());
         Optional<Quiz> changedQuiz = quizRepo.findById(form.getId());
-        changedQuiz.ifPresent(quiz -> quiz.setTitle(form.getTitle()));
-        return "redirect:../../quiz";
+        changedQuiz.ifPresent(quiz -> {
+            quiz.setTitle(form.getTitle());
+            quizRepo.save(quiz);
+        });
+        return "redirect:../changeQuiz/" + form.getId();
     }
 
     @RequestMapping("/deleteQuiz/{id}")
     public String deleteQuiz(@PathVariable("id")Integer id){
         System.out.println("trying to delete QuiZ with id: " + id.toString());
-        quizRepo.deleteById(id);
+        if (quizRepo.findById(id).isPresent()){
+            for (Integer i : quizRepo.findById(id).get().getQuestions()) {
+                //questionRepo.deleteById(i);
+                if (questionRepo.findById(i).isPresent()){
+                    questionRepo.deleteById(i);
+                }else{
+                    log.warn("Could not delete Question with Id: [" + i + "] (Question not found)");
+                }
+            }
+            quizRepo.deleteById(id);
+        }else{
+            log.warn("Could not delete Quiz with Id: [" + id + "] (Quiz not found)");
+        }
         return "redirect:../quiz";
     }
 
     @RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
-    public String addQuestion(@ModelAttribute("form") @Valid FormNewQuestion form){
+    public String addQuestion(@ModelAttribute("form") @Valid FormNewQuestion form, Model model){
         form.convertType();
 
         String[] answers = {form.answer1, form.answer2, form.answer3, form.answer4};
@@ -91,26 +122,49 @@ public class MainController {
         Quiz quiz = quizRepo.findById(form.getQuizId()).get();
         quiz.addQuestion(q.getId());
         quizRepo.save(quiz);
-
-        return "redirect:quiz";
+        redirect = true;
+        return "redirect:changeQuiz/" + form.getQuizId().toString();
     }
 
-    @RequestMapping("/deleteQuestion/{id}")
-    public String deleteQuestion(@PathVariable("id")Integer id){
-        System.out.println("trying to delete Question with id: " + id.toString());
-        questionRepo.deleteById(id);
-        return "redirect:../quiz";
+    @RequestMapping("/deleteQuestion/{quizId}/{questionId}")
+    public String deleteQuestion(@PathVariable("quizId")Integer quizId, @PathVariable("questionId")Integer questionId){
+        System.out.println("trying to delete Question with id: " + questionId.toString());
+        try {
+            questionRepo.deleteById(questionId);
+            if(quizRepo.findById(quizId).isPresent()){
+                Quiz q = quizRepo.findById(quizId).get();
+                q.getQuestions().remove(q.getQuestions().indexOf(questionId));
+                quizRepo.save(q);
+            }else{
+                log.warn("Could not delete Quiz with Id [" + quizId + "] (Quiz not found)");
+            }
+        }catch (EmptyResultDataAccessException e){
+            log.warn("Could not delete question with Id [" + questionId + "] (Question not found)");
+        }
+        return "redirect:../../quiz";
     }
 
-    @RequestMapping("/test")
-    public String test(){
-
-        Question q = questionRepo.save(new Question());
-
-        System.out.println(questionRepo.findAll());
-        //questionRepo.save(new Question());
-        return "redirect:index";
+    @RequestMapping(value = "/changeQuestion", method = RequestMethod.POST)
+    public String changeQuestion(@ModelAttribute("form") @Valid FormChangeQuestion form, Model model) {
+        System.out.println(form.toString());
+        if (questionRepo.findById(form.questionId).isPresent()){
+            Question q = questionRepo.findById(form.questionId).get();
+            form.convertType();
+            form.convertAnswers();
+            q.setPoints(form.getPoints());
+            q.setAnswer(form.getAnswer());
+            q.setAnswers(form.getAnswers());
+            q.setMedia(form.getMedia());
+            q.setQuestionText(form.getQuestionText());
+            q.setType(form.getType());
+            q.setOrder(form.getOrder());
+            questionRepo.save(q);
+        }else{
+            log.warn("Could not delete question with Id [" + form.questionId + "] (Question not found)");
+        }
+        return changeQuiz(form.getQuizId(), model);
     }
+
     @RequestMapping("/quiz")
     public String Quiz(){
         return "quiz";

@@ -122,7 +122,13 @@ public class FormNewQuestion {
         this.quizId = quizId;
     }
 
-    public void convertType() {
+    public QuestionType convertType() {
         this.type = QuestionType.getValue(stype);
+        return this.type;
+    }
+
+    public String[] convertAnswers(){
+        this.answers = new String[]{answer1, answer2, answer3, answer4};
+        return this.answers;
     }
 }

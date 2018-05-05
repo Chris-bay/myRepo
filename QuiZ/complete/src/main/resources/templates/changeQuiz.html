@@ -27,8 +27,8 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index">Home</a></li>
-                <li class="breadcrumb-item"><a href="quiz">Quiz</a></li>
+                <li class="breadcrumb-item"><a href="../index">Home</a></li>
+                <li class="breadcrumb-item"><a href="../quiz">Quiz</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Change QuiZ</li>
             </ol>
         </nav>
@@ -38,6 +38,9 @@
                 <h1>Edit QuiZ</h1>
                 <form method="post" role="form" id="ChangeQuizForm" th:action="@{/changeQuiz/change}"
                 th:object="${FormChangeQuiz}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="AQuizId" th:field="*{id}" required="yes" style="display: none"/>
+                    </div>
                     <div class="form-group">
                         <label for="quizTitle">Title of the QuiZ</label>
                         <input type="text" class="form-control" id="quizTitle" th:field="*{title}" style="max-width: 30%"/>
@@ -61,6 +64,7 @@
                             <th>Media link</th>
                             <th>Points</th>
                             <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                     </table>
@@ -162,8 +166,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" role="form" id="ChangeQuestionForm" th:action="@{/editQuestion}"
+                    <form method="post" role="form" id="ChangeQuestionForm" th:action="@{/changeQuestion}"
                           th:object="${FormChangeQuestion}">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="EQuestionId" th:field="*{questionId}" required="yes" style="display: none"/>
+                        </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="EQuizId" th:field="*{quizId}" required="yes" style="display: none"/>
                         </div>
@@ -253,6 +260,7 @@
 	    function callReady(){
             ready(/*[[${FormChangeQuiz.id}]]*/ 0);
             document.getElementById("QuizId").value = /*[[${FormChangeQuiz.id}]]*/ 0;
+            document.getElementById("EQuizId").value = /*[[${FormChangeQuiz.id}]]*/ 0;
         }
         /*]]>*/
     </script>

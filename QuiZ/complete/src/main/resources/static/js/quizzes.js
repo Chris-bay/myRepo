@@ -8,13 +8,6 @@ $(document).ready(function(){
                 {"data": "id"},
                 {"data": "title"},
                 {
-                    "data": "questionIds",
-                    "render": function (data, questionIds, row, meta) {
-                        var a = '<a class="btn btn-success" href="/startQuiz/' + data + '"><i class="fa fa-fw fa-play"></i></a>';
-                        return a;
-                    }
-                },
-                {
                     "data": "id",
                     "orderable": false,
                     "searchable": false,

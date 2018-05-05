@@ -1,5 +1,6 @@
 package QuiZ.Controller;
 
+import QuiZ.Participate.ParticipateForm;
 import QuiZ.Questions.Question;
 import QuiZ.Questions.QuestionRepo;
 import QuiZ.Questions.QuestionType;
@@ -169,10 +170,29 @@ public class MainController {
     public String Quiz(){
         return "quiz";
     }
-    @RequestMapping("/participate")
-    public String Participate(){
-        return "Participate";
+    @RequestMapping(value = "/participate", method = RequestMethod.GET)
+    public String participateGet(Model model){
+        model.addAttribute("ParticipateForm", new ParticipateForm());
+        return "startParticipate";
     }
+
+    @RequestMapping(value = "/participate", method = RequestMethod.POST)
+    public String participatePost(@ModelAttribute("form") @Valid ParticipateForm form, Model model){
+        if (quizRepo.findById(Integer.parseInt(form.getId())).isPresent()){
+            model.addAttribute("ParticipateForm", form);
+            return "redirect:participate/" + form.getId();
+        }else {
+            form.setErrorMessage("Could not find the given Quiz");
+            model.addAttribute("ParticipateForm", form);
+            return "startParticipate";
+        }
+    }
+
+    @RequestMapping("/participate/{id}")
+    public String participateId(@PathVariable("id")String id){
+        return "participate";
+    }
+
     @RequestMapping("/login")
     public String login(){
         return "login";

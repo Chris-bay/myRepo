@@ -14,6 +14,8 @@ public class Quiz {
     private Integer id;
     private String title;
 
+    private Integer currentIndex = 0;
+
     private ArrayList<Integer> questionIds = new ArrayList<>(
     );
 
@@ -57,5 +59,13 @@ public class Quiz {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Integer getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public void setCurrentIndex(Integer currentIndex) {
+        this.currentIndex = currentIndex;
     }
 }

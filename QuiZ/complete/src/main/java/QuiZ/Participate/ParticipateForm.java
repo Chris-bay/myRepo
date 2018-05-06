@@ -3,11 +3,16 @@ package QuiZ.Participate;
 public class ParticipateForm {
 
     private String name;
-    private String id;
+    private String quizId;
+    private String questionId;
     private String errorMessage;
 
     private Integer question;
     private Integer answer;
+
+    private Integer retAnswer;
+    private String retAnswerStr;
+    private String type;
 
     public String getName() {
         return name;
@@ -15,14 +20,6 @@ public class ParticipateForm {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getErrorMessage() {
@@ -47,5 +44,45 @@ public class ParticipateForm {
 
     public void setAnswer(Integer answer) {
         this.answer = answer;
+    }
+
+    public Integer getRetAnswer() {
+        return retAnswer;
+    }
+
+    public void setRetAnswer(Integer retAnswer) {
+        this.retAnswer = retAnswer;
+    }
+
+    public String getRetAnswerStr() {
+        return retAnswerStr;
+    }
+
+    public void setRetAnswerStr(String retAnswerStr) {
+        this.retAnswerStr = retAnswerStr;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(String quizId) {
+        this.quizId = quizId;
+    }
+
+    public String getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(String questionId) {
+        this.questionId = questionId;
     }
 }

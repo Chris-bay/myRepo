@@ -79,7 +79,7 @@ function  ready(quizId){
                 {
                     "data": "answer",
                     "render": function (data, answer, row, meta) {
-                        var ca = row.answers[row.answer];
+                        var ca = row.answer;
                         return ca;
                     }
                 },

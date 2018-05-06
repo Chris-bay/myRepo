@@ -13,7 +13,7 @@ public class FormNewQuestion {
     String answer3;
     String answer4;
     String[] answers;
-    Integer answer;
+    String answer;
     String media;
     Integer order;
     Integer stype;
@@ -82,11 +82,11 @@ public class FormNewQuestion {
         this.answers = answers;
     }
 
-    public Integer getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Integer answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 

@@ -109,7 +109,7 @@ public class MainController {
 
         String[] answers = {form.answer1, form.answer2, form.answer3, form.answer4};
 
-        Question q = questionRepo.save(new Question(form.type, form.questionText, answers, form.answer, form.media, form.points));
+        Question q = questionRepo.save(new Question(form.type, form.questionText, answers, answers[Integer.parseInt(form.answer)], form.media, form.points));
 
         Quiz quiz = quizRepo.findById(form.getQuizId()).get();
         quiz.addQuestion(q.getId());
@@ -144,7 +144,14 @@ public class MainController {
             form.convertType();
             form.convertAnswers();
             q.setPoints(form.getPoints());
-            q.setAnswer(form.getAnswer());
+
+            // (M)MULTIPLECHOICE Questions returns the correct answer as index of answers
+
+            if (form.getType() == QuestionType.MMULTIPLECHOICE || form.getType() == QuestionType.MULTIPLECHOICE){
+                q.setAnswer(form.getAnswers()[Integer.parseInt(form.getAnswer())]);
+            }else{
+                q.setAnswer(form.getAnswer());
+            }
             q.setAnswers(form.getAnswers());
             q.setMedia(form.getMedia());
             q.setQuestionText(form.getQuestionText());
@@ -161,28 +168,31 @@ public class MainController {
     public String Quiz(){
         return "quiz";
     }
-    @RequestMapping(value = "/participate", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/startParticipate", method = RequestMethod.GET)
     public String participateGet(Model model){
         model.addAttribute("ParticipateForm", new ParticipateForm());
         return "startParticipate";
     }
 
     @RequestMapping(value = "/participate", method = RequestMethod.POST)
-    public ModelAndView participatePost(@ModelAttribute("form") @Valid ParticipateForm form, Model model,RedirectAttributes redir){
+    public String participatePost(@ModelAttribute("form") @Valid ParticipateForm form, Model model,RedirectAttributes redir){
         ModelAndView modelAndView = new ModelAndView();
-        if (quizRepo.findById(Integer.parseInt(form.getId())).isPresent()){
+        if (quizRepo.findById(Integer.parseInt(form.getQuizId())).isPresent()){
             model.addAttribute("ParticipateForm", form);
-            modelAndView.setViewName("redirect:participate/" + form.getId());
-            redir.addFlashAttribute("ParticipateForm", form);
-            return modelAndView;
+            return "participate";
             //return "redirect:participate/" + form.getId();
         }else {
             form.setErrorMessage("Could not find the given Quiz");
             model.addAttribute("ParticipateForm", form);
-            modelAndView.setViewName("redirect:participate/" + form.getId());
-            redir.addFlashAttribute("ParticipateForm", form);
-            return modelAndView;
+            return "startParticipate";
         }
+    }
+
+    @RequestMapping(value = "/participate/submit", method = RequestMethod.POST)
+    public String submitAnswer(@ModelAttribute("form") @Valid ParticipateForm form, Model model){
+        model.addAttribute("ParticipateForm", form);
+        return "participateQResult";
     }
 
     @RequestMapping("/next/{id}")
@@ -193,7 +203,7 @@ public class MainController {
             quizRepo.save(q);
         }
         model.addAttribute("ParticipateForm", form);
-        return "redirect:participate/" + form.getId();
+        return "redirect:participate/" + form.getQuizId();
     }
 
     @RequestMapping("/participate/{id}")

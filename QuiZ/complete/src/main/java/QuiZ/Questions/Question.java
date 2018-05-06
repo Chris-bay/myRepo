@@ -1,7 +1,6 @@
 package QuiZ.Questions;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 public class Question {
@@ -16,17 +15,17 @@ public class Question {
     Integer points;
     String questionText;
     String[] answers = {"", "", "", ""};
-    Integer answer;
+    String answer;
     String media;
     Integer qorder;
 
     public Question(){}
 
-    public Integer getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Integer answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
@@ -50,7 +49,7 @@ public class Question {
         this.answers = answers;
     }
 
-    public Question(QuestionType type,String question, String[] answers, Integer rightAnswer, String media, Integer points) {
+    public Question(QuestionType type,String question, String[] answers, String rightAnswer, String media, Integer points) {
         this.questionText = question;
         this.answers = answers;
         this.answer = rightAnswer;

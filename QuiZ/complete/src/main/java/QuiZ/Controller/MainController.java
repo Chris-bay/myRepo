@@ -41,7 +41,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String indexreroute(){
-        return "redirect:index";
+        return "login";
     }
 
     @RequestMapping("/index")
@@ -213,6 +213,12 @@ public class MainController {
 
     @RequestMapping("/login")
     public String login(){
+        return "login";
+    }
+
+    @RequestMapping("/login_error")
+    public String loginError(Model model){
+        model.addAttribute("error", true);
         return "login";
     }
 }

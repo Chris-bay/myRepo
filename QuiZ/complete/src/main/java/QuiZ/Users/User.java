@@ -1,5 +1,8 @@
 package QuiZ.Users;
 
+import org.springframework.data.annotation.Transient;
+import sun.security.util.Password;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,13 +12,16 @@ public class User {
     @Id
     Long id;
 
-    String name;
-    //password TBA
+    String username;
+    @Transient
+    String password;
+
     UserRole role;
     Integer points;
+    Boolean enabeld;
 
     public User(String name, UserRole role) {
-        this.name = name;
+        this.username = name;
         this.role = role;
     }
 
@@ -27,12 +33,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        name = name;
+    public void setUsername(String username) {
+        username = username;
     }
 
     public UserRole getRole() {
@@ -49,6 +55,22 @@ public class User {
 
     public void setPoints(Integer points) {
         this.points = points;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getEnabeld() {
+        return enabeld;
+    }
+
+    public void setEnabeld(Boolean enabeld) {
+        this.enabeld = enabeld;
     }
 }
 

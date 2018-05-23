@@ -1,5 +1,7 @@
 package QuiZ.Controller;
 
+import QuiZ.LiveQuiz.LiveQuiz;
+import QuiZ.LiveQuiz.LiveQuizRepo;
 import QuiZ.Participate.ParticipateForm;
 import QuiZ.Questions.Question;
 import QuiZ.Questions.QuestionRepo;
@@ -12,21 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.jws.WebParam;
 import javax.validation.Valid;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import java.util.Optional;
+import org.hashids.*;
 
 @Controller
 public class MainController {
@@ -34,6 +31,10 @@ public class MainController {
     QuestionRepo questionRepo;
     @Autowired
     QuizRepo quizRepo;
+    @Autowired
+    LiveQuizRepo liveQuizRepo;
+
+    Hashids hashids = new Hashids("QuiZ is the one and only solution for custom quiz", 4, "ABCDEFGHIJKLNPXY");
 
     Boolean redirect = false;
 
@@ -207,8 +208,38 @@ public class MainController {
     }
 
     @RequestMapping("/participate/{id}")
-    public String participateId(@PathVariable("id")String id){
+    public String participateId(@PathVariable("id")Integer id){
         return "participate";
+    }
+
+    @RequestMapping(value = "/startQuiz/{id}", method = RequestMethod.GET)
+    public String startQuiz(@PathVariable("id")Integer id, Model model){
+        Integer lqId = 0;
+        if (quizRepo.findById(id).isPresent()){
+
+            LiveQuiz lq = liveQuizRepo.save(new LiveQuiz(quizRepo.findById(id).get()));
+            lqId = lq.getId();
+            //System.out.println(lqId);
+        }
+        String miniId = hashids.encode(id);
+        model.addAttribute("quizId", id);
+        model.addAttribute("miniId", miniId);
+        model.addAttribute("liveQuizId", lqId);
+        return "startQuiz";
+    }
+
+    @RequestMapping(value = "/startQuiz", method = RequestMethod.POST)
+    public String startQuizPOST(@ModelAttribute("form") @Valid ParticipateForm form, Model model){
+        return "liveQuiz";
+    }
+
+    @RequestMapping(value = "/addParticipant/{id}/{name}", method = RequestMethod.GET)
+    public String addParticipant(@PathVariable("id")Integer id,@PathVariable("name")String name){
+        liveQuizRepo.findById(id).ifPresent(lq -> {
+            lq.addParticipant(name);
+            liveQuizRepo.save(lq);
+        });
+        return "liveQuiz";
     }
 
     @RequestMapping("/login")

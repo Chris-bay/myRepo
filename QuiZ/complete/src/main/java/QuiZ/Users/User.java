@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    Long id;
+    String id;
 
     String username;
     @Transient
@@ -20,17 +20,14 @@ public class User {
     Integer points;
     Boolean enabeld;
 
-    public User(String name, UserRole role) {
-        this.username = name;
+    public User(String username, String password, UserRole role) {
+        this.username = username;
+        this.password = password;
         this.role = role;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {

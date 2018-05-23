@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>QuiZ</title>
+    <!-- Bootstrap core CSS-->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Datatables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin.css" rel="stylesheet"/>
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top" onload="callReady()">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav"
+     th:include="navigation :: navigation"></nav>
+<div class="content-wrapper">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index">Home</a></li>
+            <li class="breadcrumb-item"><a href="quiz">Quiz</a></li>
+            <li class="breadcrumb-item"><a href="quiz">Start quiz</a></li>
+        </ol>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="jumbotron" id="header"></div>
+        </div>
+        <div class="row">
+            <div id="miniId">
+            </div>
+        </div>
+        <div class="row">
+            <table id="participant-table">
+                <tr>
+                    <th>Participants:</th>
+                </tr>
+            </table>
+        </div>
+        <form method="post" th:action="@{/startQuiz}">
+            <input type="text" th:value="*{miniId}" style="display:none"/>
+            <input type="text" th:value="*{quizId}" style="display:none"/>
+            <input id="liveQuizId" type="text" th:value="*{liveQuizId}" style="display:none"/>
+            <button type="submit" class="btn btn-primary">Continue</button>
+        </form>
+
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                <small>Copyright © 2018</small>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Datatables -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+    <script src="../js/startQuiz.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+	    function callReady(){
+            setHeadtext(/*[[${quizId}]]*/ 0, /*[[${miniId}]]*/ "sorry something went wrong");
+            //checkForParticipants(/*[[${liveQuizId}]]*/ 0);
+            //console.log("debug");
+        }
+        /*]]>*/
+    </script>
+</div>
+</body>
+
+</html>

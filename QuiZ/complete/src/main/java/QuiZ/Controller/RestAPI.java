@@ -1,5 +1,6 @@
 package QuiZ.Controller;
 
+import QuiZ.LiveQuiz.LiveQuizRepo;
 import QuiZ.Questions.Question;
 import QuiZ.Questions.QuestionRepo;
 import QuiZ.Quiz.Quiz;
@@ -21,6 +22,8 @@ public class RestAPI {
     QuestionRepo questionRepo;
     @Autowired
     QuizRepo quizRepo;
+    @Autowired
+    LiveQuizRepo liveQuizRepo;
 
     Gson gson = new Gson();
 
@@ -75,6 +78,7 @@ public class RestAPI {
         }
     }
 
+    @RequestMapping("/api/getQuiz/{id}")
     @ResponseBody
     public String getQuiz(@PathVariable("id")Integer id){
         if (quizRepo.findById(id).isPresent()){
@@ -84,4 +88,26 @@ public class RestAPI {
         }
     }
 
+    @RequestMapping("/api/getLiveQuiz/{id}")
+    @ResponseBody
+    public String getLiveQuiz(@PathVariable("id")Integer id){
+        if (liveQuizRepo.findById(id).isPresent()){
+            return gson.toJson(liveQuizRepo.findById(id).get());
+        }else{
+            return gson.toJson(null);
+        }
+    }
+
+    @RequestMapping("/api/deleteLiveQuiz/{id}")
+    @ResponseBody
+    public String deleteLiveQuiz(@PathVariable("id")Integer id){
+        liveQuizRepo.deleteById(id);
+        return gson.toJson(liveQuizRepo.findAll());
+    }
+
+    @RequestMapping("/api/getAllLiveQuiz")
+    @ResponseBody
+    public String getAllLiveQuiz(){
+        return gson.toJson(liveQuizRepo.findAll());
+    }
 }

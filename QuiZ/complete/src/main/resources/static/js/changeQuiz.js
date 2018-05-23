@@ -116,7 +116,7 @@ function changeQuestion(id){
 
     $.getJSON( "/api/getQuestion/" + id, function( json ) {
 
-        console.log(json.id);
+        //console.log(json.id);
 
         document.getElementById("EQuestionId").value = json.id;
         document.getElementById("EQuestionText").value = json.questionText;

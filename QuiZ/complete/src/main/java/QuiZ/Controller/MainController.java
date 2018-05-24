@@ -179,7 +179,11 @@ public class MainController {
     @RequestMapping(value = "/participate", method = RequestMethod.POST)
     public String participatePost(@ModelAttribute("form") @Valid ParticipateForm form, Model model,RedirectAttributes redir){
         ModelAndView modelAndView = new ModelAndView();
-        if (quizRepo.findById(Integer.parseInt(form.getQuizId())).isPresent()){
+        long[] numbers = hashids.decode(form.getHashId());
+        Integer decodeId = (int)numbers[0];
+        //System.out.println(decodeId);
+        if (liveQuizRepo.findById(decodeId).isPresent()){
+            form.setQuizId(liveQuizRepo.findById(decodeId).get().getQuiz().getId().toString());
             model.addAttribute("ParticipateForm", form);
             return "participate";
             //return "redirect:participate/" + form.getId();
@@ -196,35 +200,62 @@ public class MainController {
         return "participateQResult";
     }
 
-    @RequestMapping("/next/{id}")
-    public String next(@PathVariable("id") String id, @ModelAttribute("form") @Valid ParticipateForm form, Model model){
-        if (quizRepo.findById(Integer.parseInt(id)).isPresent()) {
-            Quiz q = quizRepo.findById(Integer.parseInt(id)).get();
-            q.setCurrentIndex(q.getCurrentIndex()+1);
-            quizRepo.save(q);
-        }
+    @RequestMapping(value = "/next/{hash}", method = RequestMethod.POST)
+    public String next(@PathVariable("hash") String hash, @ModelAttribute("form") @Valid ParticipateForm form, Model model){
+        form.setQuizId(liveQuizRepo.findById((int)hashids.decode(hash)[0]).get().getQuiz().getId().toString());
         model.addAttribute("ParticipateForm", form);
-        return "redirect:participate/" + form.getQuizId();
+        return "redirect:participate/" + form.getHashId();
     }
 
-    @RequestMapping("/participate/{id}")
-    public String participateId(@PathVariable("id")Integer id){
+    @RequestMapping("/participate/{hash}")
+    public String participateId(@PathVariable("hash")String hash){
         return "participate";
+    }
+
+    @RequestMapping("/startParticipate/{hash}")
+    public String startParticipateHash(@PathVariable("hash")String hash, Model model){
+        ParticipateForm form = new ParticipateForm();
+        if (liveQuizRepo.findById((int)hashids.decode(hash)[0]).isPresent()){
+            form.setHashId(hash);
+            form.setQuizId(liveQuizRepo.findById((int)hashids.decode(hash)[0]).get().getQuiz().getId().toString());
+            model.addAttribute("ParticipateForm", form);
+        }else{
+            form.setErrorMessage("Could not find the given Quiz");
+            model.addAttribute("ParticipateForm", form);
+        }
+        return "startParticipate";
     }
 
     @RequestMapping(value = "/startQuiz/{id}", method = RequestMethod.GET)
     public String startQuiz(@PathVariable("id")Integer id, Model model){
         Integer lqId = 0;
+        String miniId = "";
         if (quizRepo.findById(id).isPresent()){
-
             LiveQuiz lq = liveQuizRepo.save(new LiveQuiz(quizRepo.findById(id).get()));
             lqId = lq.getId();
-            //System.out.println(lqId);
+            miniId = hashids.encode(lq.getId());
+            lq.setHashId(miniId);
+            liveQuizRepo.save(lq);
         }
-        String miniId = hashids.encode(id);
+        System.out.println(miniId);
         model.addAttribute("quizId", id);
         model.addAttribute("miniId", miniId);
         model.addAttribute("liveQuizId", lqId);
+        return "startQuiz";
+    }
+
+    @RequestMapping(value = "/enterQuiz/{id}", method = RequestMethod.GET)
+    public String startLiveQuiz(@PathVariable("id")Integer id, Model model){
+        if(liveQuizRepo.findById(id).isPresent()){
+            LiveQuiz lq = liveQuizRepo.findById(id).get();
+            model.addAttribute("quizId",  lq.getQuiz().getId());
+            model.addAttribute("miniId", lq.getHashId());
+            model.addAttribute("liveQuizId", lq.getId());
+        }else{
+            model.addAttribute("quizId", 0);
+            model.addAttribute("miniId", 0);
+            model.addAttribute("liveQuizId", 0);
+        }
         return "startQuiz";
     }
 

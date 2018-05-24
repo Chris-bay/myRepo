@@ -16,8 +16,7 @@ public class Quiz {
 
     private Integer currentIndex = 0;
 
-    private ArrayList<Integer> questionIds = new ArrayList<>(
-    );
+    private ArrayList<Integer> questionIds = new ArrayList<>();
 
     public Integer addQuestion(Integer q){
         this.questionIds.add(q);

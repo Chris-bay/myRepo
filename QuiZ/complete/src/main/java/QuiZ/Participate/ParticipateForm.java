@@ -3,6 +3,7 @@ package QuiZ.Participate;
 public class ParticipateForm {
 
     private String name;
+    private String hashId;
     private String quizId;
     private String questionId;
     private String errorMessage;
@@ -84,5 +85,13 @@ public class ParticipateForm {
 
     public void setQuestionId(String questionId) {
         this.questionId = questionId;
+    }
+
+    public String getHashId() {
+        return hashId;
+    }
+
+    public void setHashId(String hashId) {
+        this.hashId = hashId;
     }
 }

@@ -1,0 +1,5 @@
+.quizzes tbody tr td a{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

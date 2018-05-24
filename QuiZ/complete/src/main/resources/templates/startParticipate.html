@@ -27,14 +27,14 @@
               th:object="${ParticipateForm}">
             <div class="form-group">
                 <div>
-                    Enter your name
-                    <small style="font-size: 50%;"> or be creative..</small>
+                    Username
+                    <small style="font-size: 50%;"> or something creative..</small>
                 </div>
                 <input type="text" class="form-control" id="name" th:field="*{name}" style="max-width: 30%" required="yes"/>
             </div>
             <div class="form-group">
-                <label for="quizId">Enter the ID of the Quiz</label>
-                <input type="text" class="form-control" id="quizId" th:field="*{quizId}" style="max-width: 30%" required="yes"/>
+                <label for="quizId">Participation Code</label>
+                <input type="text" class="form-control" id="quizId" th:field="*{hashId}" style="max-width: 30%" required="yes"/>
             </div>
             <button type="submit" class="btn btn-primary">confirm</button>
         </form>

@@ -20,11 +20,18 @@ public class LiveQuiz {
     private Integer participantsNumber;
     private ArrayList<String> participants = new ArrayList<>();
     private LocalDateTime dateOfActivation;
+    private String hashId;
 
     public LiveQuiz(){}
 
     public LiveQuiz(Quiz q){
         this.quiz = q;
+        this.dateOfActivation = LocalDateTime.now();
+    }
+
+    public LiveQuiz(Quiz q, String hashid){
+        this.quiz = q;
+        this.hashId = hashid;
         this.dateOfActivation = LocalDateTime.now();
     }
 
@@ -59,5 +66,13 @@ public class LiveQuiz {
 
     public LocalDateTime getDateOfActivation() {
         return dateOfActivation;
+    }
+
+    public String getHashId() {
+        return hashId;
+    }
+
+    public void setHashId(String hashId) {
+        this.hashId = hashId;
     }
 }

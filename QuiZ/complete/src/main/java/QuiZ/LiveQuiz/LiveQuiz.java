@@ -21,6 +21,7 @@ public class LiveQuiz {
     private ArrayList<String> participants = new ArrayList<>();
     private LocalDateTime dateOfActivation;
     private String hashId;
+    private Boolean active = false;
 
     public LiveQuiz(){}
 
@@ -74,5 +75,13 @@ public class LiveQuiz {
 
     public void setHashId(String hashId) {
         this.hashId = hashId;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

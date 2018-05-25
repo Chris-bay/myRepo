@@ -33,7 +33,10 @@
     <input type="text" style="display:none" th:field="*{quizId}" id="RQuizId"/>
     <input type="text" style="display:none" th:field="*{questionId}" id="RQuestionId"/>
     <input type="text" style="display:none" th:field="*{name}" id="RName"/>
-    <button type="submit">Enter the Game</button>
+    <input type="text" style="display:none" th:field="*{liveQuizId}" id="liveQuizId"/>
+    <div id="submitButton">
+        <!--<button type="submit">Enter the Game</button>-->
+    </div>
 </form>
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
@@ -46,12 +49,11 @@
 <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- Custom scripts for all pages-->
 <script src="../js/sb-admin.min.js"></script>
-<script src="../js/participateQResult.js"></script>
 <script th:inline="javascript">
 /*<![CDATA[*/
-function callReady(){
-getQuestion(/*[[${ParticipateForm.getQuizId()}]]*/ 0);
-}
+//function callReady(){
+//getQuestion(/*[[${ParticipateForm.getQuizId()}]]*/ 0);
+//}
 /*]]>*/
 </script>
 </body>

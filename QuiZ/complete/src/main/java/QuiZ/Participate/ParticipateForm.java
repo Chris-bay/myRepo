@@ -6,6 +6,7 @@ public class ParticipateForm {
     private String hashId;
     private String quizId;
     private String questionId;
+    private String liveQuizId;
     private String errorMessage;
 
     private Integer question;
@@ -93,5 +94,13 @@ public class ParticipateForm {
 
     public void setHashId(String hashId) {
         this.hashId = hashId;
+    }
+
+    public String getLiveQuizId() {
+        return liveQuizId;
+    }
+
+    public void setLiveQuizId(String liveQuizId) {
+        this.liveQuizId = liveQuizId;
     }
 }

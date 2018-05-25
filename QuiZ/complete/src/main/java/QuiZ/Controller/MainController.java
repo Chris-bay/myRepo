@@ -42,7 +42,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String indexreroute(){
-        return "login";
+        return "index";
     }
 
     @RequestMapping("/index")
@@ -183,10 +183,13 @@ public class MainController {
         Integer decodeId = (int)numbers[0];
         //System.out.println(decodeId);
         if (liveQuizRepo.findById(decodeId).isPresent()){
-            form.setQuizId(liveQuizRepo.findById(decodeId).get().getQuiz().getId().toString());
+            LiveQuiz lq = liveQuizRepo.findById(decodeId).get();
+            form.setQuizId(lq.getQuiz().getId().toString());
+            form.setLiveQuizId(lq.getId().toString());
+            lq.addParticipant(form.getName());
+            liveQuizRepo.save(lq);
             model.addAttribute("ParticipateForm", form);
-            return "participate";
-            //return "redirect:participate/" + form.getId();
+            return "lobby";
         }else {
             form.setErrorMessage("Could not find the given Quiz");
             model.addAttribute("ParticipateForm", form);

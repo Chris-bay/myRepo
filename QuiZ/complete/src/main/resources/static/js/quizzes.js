@@ -1,3 +1,6 @@
+
+var dt1;
+
 $(document).ready(function(){
     var dt = $('#quizzes').DataTable({
             ajax: {
@@ -37,7 +40,7 @@ $(document).ready(function(){
             ],
         "order": [[1, 'asc']]
     });
-    var dt1 = $('#liveQuizzes').DataTable({
+    dt1 = $('#liveQuizzes').DataTable({
             ajax: {
                 url: '/api/getAllLiveQuiz',
                 dataSrc: ''
@@ -77,7 +80,7 @@ $(document).ready(function(){
                     "orderable": false,
                     "searchable": false,
                     "render": function (data, type, row, meta) {
-                        var a = '<a class="btn btn-danger" href="/api/deleteLiveQuiz/' + data + '"><i class="fa fa-fw fa-close"></i></a>';
+                        var a = '<button class="btn btn-danger" onClick="Pinger_ping(DeleteLiveQuiz(' + data + '))"><i class="fa fa-fw fa-close"></i></button>';
                         return a;
                     }
                 }
@@ -85,6 +88,32 @@ $(document).ready(function(){
         "order": [[1, 'asc']]
     });
 });
+
+function DeleteLiveQuiz(id){
+    Pinger_ping("localhost:8080/api/deleteLiveQuiz/" + id);
+    dt1.ajax.reload();
+}
+
+function Pinger_ping(ip) {
+
+  if(!this.inUse) {
+
+    this.inUse = true;
+    this.ip = ip;
+
+    var _that = this;
+
+    this.img = new Image();
+
+    this.img.onload = function() {};
+    this.img.onerror = function() {};
+
+    this.start = new Date().getTime();
+    this.img.src = "http://" + ip;
+    this.timer = setTimeout(function() {}, 1500);
+
+  }
+}
 
 function test(){
     console.log("test!");

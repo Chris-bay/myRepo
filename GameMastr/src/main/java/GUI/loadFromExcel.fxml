@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.loadFromExcelController">
+   <children>
+      <Button layoutX="307.0" layoutY="8.0" mnemonicParsing="false" onAction="#openFileChooser" prefHeight="25.0" prefWidth="524.0" text="Excel Tabelle laden" />
+      <ScrollPane layoutX="14.0" layoutY="39.0" prefHeight="572.0" prefWidth="555.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="572.0" prefWidth="555.0">
+                    <columns>
+                      <TableColumn prefWidth="108.0" sortable="false" text="1" />
+                      <TableColumn prefWidth="110.0" sortable="false" text="2" />
+                        <TableColumn prefWidth="110.0" sortable="false" text="3" />
+                        <TableColumn prefWidth="110.0" sortable="false" text="4" />
+                        <TableColumn prefWidth="110.0" sortable="false" text="5" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <ScrollPane layoutX="569.0" layoutY="39.0" prefHeight="572.0" prefWidth="476.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="table2" prefHeight="572.0" prefWidth="476.0">
+                    <columns>
+                      <TableColumn prefWidth="145.0" text="1" />
+                      <TableColumn text="2" />
+                        <TableColumn text="3" />
+                        <TableColumn text="4" />
+                        <TableColumn text="5" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button layoutX="840.0" layoutY="8.0" mnemonicParsing="false" onAction="#Close" prefHeight="25.0" prefWidth="97.0" text="Abbrechen" />
+      <Button layoutX="948.0" layoutY="8.0" mnemonicParsing="false" onAction="#Save" prefHeight="25.0" prefWidth="97.0" text="Weiter" />
+   </children>
+</AnchorPane>

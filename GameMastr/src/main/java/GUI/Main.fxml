@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="634.0" prefWidth="1059.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainController">
+   <children>
+      <MenuBar fx:id="menuBar" layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="1059.0" AnchorPane.bottomAnchor="609.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Helden">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#loadFromExcel" text="Aus Excel importieren" />
+                  <MenuItem mnemonicParsing="false" onAction="#showCreateHero" text="Neu" />
+                  <MenuItem mnemonicParsing="false" text="Öffnen" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Schließen" />
+            </items>
+          </Menu>
+          <Menu fx:id="editMenu" mnemonicParsing="false" text="Edit">
+            <items>
+                  <Menu fx:id="editSubMenu" mnemonicParsing="false" text="Bearbeiten" />
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.8060548722800378" layoutY="25.0" prefHeight="521.0" prefWidth="1007.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <items>
+            <TabPane fx:id="tabPane" prefHeight="576.0" prefWidth="775.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab fx:id="tableTab" text="Überblick">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="mainTable" prefHeight="578.0" prefWidth="855.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <Pane prefHeight="576.0" prefWidth="351.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <Text layoutX="21.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suchen" />
+                  <TextField layoutX="19.0" layoutY="38.0" prefHeight="25.0" prefWidth="156.0" />
+                  <ComboBox fx:id="heroDropDown" layoutX="20.0" layoutY="73.0" prefHeight="25.0" prefWidth="156.0" promptText="Held auswählen" />
+                  <Text layoutX="23.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="87.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="149.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="23.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="87.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="149.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="59.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="59.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="117.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="117.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <CheckBox layoutX="20.0" layoutY="114.0" mnemonicParsing="false" text="Show in Table" />
+                  <Button layoutX="118.0" layoutY="110.0" mnemonicParsing="false" onAction="#SearchButton" prefHeight="25.0" prefWidth="60.0" text="Suchen" />
+                  <Text fx:id="debugText" layoutX="90.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               </children>
+            </Pane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

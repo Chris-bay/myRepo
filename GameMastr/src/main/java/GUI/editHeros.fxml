@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditHerosController">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1060.0">
+        <menus>
+          <Menu fx:id="menu" mnemonicParsing="false" text="Load" />
+        </menus>
+      </MenuBar>
+      <TabPane layoutY="27.0" prefHeight="609.0" prefWidth="1060.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Held">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="427.0">
+                     <children>
+                        <Text layoutX="21.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rasse" />
+                        <TextField fx:id="nameText" layoutX="96.0" layoutY="16.0" onAction="#editName" prefHeight="25.0" prefWidth="150.0" />
+                        <Text layoutX="20.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+                        <ComboBox fx:id="raceDropDown" layoutX="96.0" layoutY="47.0" onAction="#editRace" prefWidth="150.0" />
+                        <Text layoutX="20.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cultur" />
+                        <Text layoutX="20.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profession" wrappingWidth="58.8671875" />
+                        <Text layoutX="20.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Neben Prof." />
+                        <ComboBox fx:id="cultureDropDown" layoutX="96.0" layoutY="78.0" onAction="#editCulture" prefWidth="150.0" />
+                        <TextField fx:id="profText" layoutX="96.0" layoutY="111.0" onAction="#editProfession" prefHeight="25.0" prefWidth="150.0" />
+                        <TextField fx:id="scndprofText" layoutX="96.0" layoutY="141.0" onAction="#editScndProfession" prefHeight="25.0" prefWidth="150.0" />
+                        <Text layoutX="22.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titel" />
+                        <Text layoutX="21.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sozialstatus" />
+                        <TextField fx:id="titleText" layoutX="96.0" layoutY="362.0" onAction="#editTitle" prefHeight="25.0" prefWidth="150.0" />
+                        <TextField fx:id="socialText" layoutX="96.0" layoutY="393.0" onAction="#editSocial" prefHeight="25.0" prefWidth="150.0" />
+                        <Text layoutX="21.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Geburtstag" />
+                        <Text layoutX="21.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alter" />
+                        <Text layoutX="21.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Augenfarbe" />
+                        <TextField fx:id="birthdayText" layoutX="97.0" layoutY="236.0" onAction="#editBirthday" />
+                        <TextField fx:id="ageText" layoutX="97.0" layoutY="267.0" onAction="#editAge" />
+                        <TextField fx:id="eyecolorText" layoutX="97.0" layoutY="298.0" onAction="#editEyeColor" />
+                        <Text layoutX="21.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Haarfarbe" />
+                        <TextField fx:id="haircolorText" layoutX="97.0" layoutY="331.0" onAction="#editHaircolor" />
+                        <TextField fx:id="weightText" layoutX="97.0" layoutY="205.0" onAction="#editWeight" />
+                        <TextField fx:id="heightText" layoutX="97.0" layoutY="174.0" onAction="#editHeight" />
+                        <Text layoutX="21.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gewicht" />
+                        <Text layoutX="21.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Größe" />
+                        <TextField fx:id="editProps" layoutX="943.0" layoutY="60.0" onAction="#editPropTable" prefHeight="25.0" prefWidth="72.0" />
+                        <ComboBox fx:id="propDropDown" layoutX="863.0" layoutY="29.0" prefWidth="150.0" />
+                        <ComboBox fx:id="specDropDown" layoutX="863.0" layoutY="60.0" prefHeight="25.0" prefWidth="67.0" />
+                        <TableView fx:id="table" layoutX="287.0" layoutY="-1.0" prefHeight="579.0" prefWidth="550.0">
+                          <columns>
+                            <TableColumn prefWidth="110.0" text="C1" />
+                            <TableColumn prefWidth="110.0" text="C2" />
+                              <TableColumn prefWidth="110.0" text="C3" />
+                              <TableColumn prefWidth="110.0" text="C4" />
+                              <TableColumn prefWidth="110.0" text="C5" />
+                          </columns>
+                        </TableView>
+                        <Text fx:id="infoText" layoutX="864.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Talente">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane prefHeight="338.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Kampf">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="313.0" prefWidth="600.0" />
+                              </content>
+                            </Tab>
+                              <Tab text="Ritual">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </Tab>
+                            <Tab text="Körperlich">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </Tab>
+                              <Tab text="Gesellschaftlich">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </Tab>
+                              <Tab text="Natur">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </Tab>
+                              <Tab text="Wissen">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </Tab>
+                              <Tab text="Handwerk">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </Tab>
+                              <Tab text="Sprachen/Schriften">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

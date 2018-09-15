@@ -30,6 +30,10 @@ public class GameMastR extends Application {
     private SceneSingleton sceneManager = SceneSingleton.instance;
     private static Stage mainStage;
 
+    /**
+     * TODO: create char, adventure implementation (maps, charakterbögen, storyline, procedural NPCs, etc.
+     */
+
     public static void setScene(String name){
         //Scene scene = new Scene((staticSceneManager.parentMap.get(name)), 1060, 634);
         // close the main Window to make navigation easier
@@ -69,6 +73,8 @@ public class GameMastR extends Application {
         if(name.equals("main")){
             MainController mainController = loader.getController();
             mainController.resizeScene();
+        }else if (name.equals("Adventure")){
+            //mainStage.setFullScreen(true);
         }
         System.out.println("Changing window to " + name);
     }
@@ -134,6 +140,9 @@ public class GameMastR extends Application {
         sceneManager.parentMap.put("editChar", "src/main/java/GUI/editHeros.fxml");
         sceneManager.parentMap.put("loadFromExcel", "src/main/java/GUI/loadFromExcel.fxml");
         sceneManager.parentMap.put("createChar", "src/main/java/GUI/createHero.fxml");
+        sceneManager.parentMap.put("Adventure", "src/main/java/Adventure/AGUI/adventure.fxml");
+        sceneManager.parentMap.put("CityMap", "src/main/java/Adventure/AGUI/cityMap.fxml");
+        sceneManager.parentMap.put("GeographyMap", "src/main/java/Adventure/AGUI/geographyMap.fxml");
         stage.getIcons().add(new Image("logo.png"));
         //URL url = new File("src/main/java/GUI/Main.fxml").toURL();
         //Parent root = FXMLLoader.load(url);

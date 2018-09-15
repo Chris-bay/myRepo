@@ -626,6 +626,170 @@ public class DBOverwatch {
         return c;
     }
 
+    public void editTalent(String group, String talentName, int value, int heroId){
+        editTalent(group, talentName, value, 0, 0, heroId);
+    }
+
+    public void editTalent(String group, String talentName, int value, int value1, int value2, int heroId){
+        ResultSet res = executeSQL("SELECT TALENTS FROM HEROS WHERE ID = " + heroId);
+        int talentTableId = 0;
+        try {
+            res.next();
+            talentTableId = res.getInt(1);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        String talentString = getTalents(group, talentTableId);
+        String tableName = "";
+        int talentID = 0;
+        switch (group){
+            case "FIGHT":
+                tableName = "FIGHT_TALENTS";
+                break;
+            case "PHYSICAL":
+                tableName = "PHYSICAL_TALENTS";
+                break;
+            case "SOCIETY":
+                tableName = "SOCIETY_TALENTS";
+                break;
+            case "NATURE":
+                tableName = "NATURE_TALENTS";
+                break;
+            case "KNOWLEDGE":
+                tableName = "KNOWLEDGE_TALENTS";
+                break;
+            case "CRAFTING":
+                tableName = "CRAFT_TALENTS";
+                break;
+            case "LANGUAGE":
+                tableName = "LAN_WRITE_TALENTS";
+                break;
+            case "RITUALS":
+                tableName = "RITUALS_TALENTS";
+                break;
+        }
+        try{
+            ResultSet resultSet = executeSQL("SELECT * FROM " + tableName + " WHERE NAME='" + talentName + "'");
+            if(resultSet.next()){
+                talentID = resultSet.getInt(1);
+                //System.out.println(talentString);
+                String newTalentString = "";
+                int i = 0;
+                int sAT;
+                int sPA;
+                int sFK;
+                ArrayList<String> subStrings = new ArrayList<>();
+                while(talentString.length() > 0){
+                    if (talentString.charAt(i) == ';'){
+                        subStrings.add(talentString.substring(0,i));
+                        talentString = talentString.substring(i+1);
+                        //System.out.println(subStrings.get(subStrings.size()-1));
+                        i = 0;
+                    }
+                    i+=1;
+                }
+                if (tableName.equals("FIGHT_TALENTS")){
+                    for (String s : subStrings){
+                        if (Integer.parseInt(s.substring(0, s.indexOf('/')))==talentID){
+                            sAT = Integer.parseInt(s.substring(s.indexOf('/')+1 ,s.indexOf('A')));
+                            sPA = Integer.parseInt(s.substring(s.indexOf('A')+1 ,s.indexOf('P')));
+                            sFK = Integer.parseInt(s.substring(s.indexOf('P')+1));
+                            s = talentID + "/" + value + "A" + value1 + "P" + value2;
+                        }
+                        newTalentString += s + ";";
+                    }
+                }else {
+                    for (String s : subStrings) {
+                        if (Integer.parseInt(s.substring(0, s.indexOf('/'))) == talentID) {
+                            s = talentID + "/" + value;
+                        }
+                        //System.out.println(s);
+                        newTalentString += s + ";";
+                    }
+                }
+                //System.out.println(newTalentString);
+                execute("UPDATE TALENTS SET " + group + "='" + newTalentString + "' WHERE ID = " + talentTableId);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private String getTalents(String group, int talentId){
+        String returnString = "";
+        try{
+            ResultSet res = executeSQL("SELECT " + group + " FROM TALENTS WHERE ID = " + talentId);
+            res.next();
+            returnString = res.getString(1);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return returnString;
+    }
+
+    public void editFightTalent(String group, String talentName, int value, int heroId){
+        String talentString = getTalents(group, heroId);
+        String tableName = "";
+        int talentID = 0;
+        switch (group){
+            case "FIGHT":
+                tableName = "FIGHT_TALENTS";
+                break;
+            case "PHYSICAL":
+                tableName = "PHYSICAL_TALENTS";
+                break;
+            case "SOCIETY":
+                tableName = "SOCIETY_TALENTS";
+                break;
+            case "NATURE":
+                tableName = "NATURE_TALENTS";
+                break;
+            case "KNOWLEDGE":
+                tableName = "KNOWLEDGE_TALENTS";
+                break;
+            case "CRAFTING":
+                tableName = "CRAFT_TALENTS";
+                break;
+            case "LANGUAGE":
+                tableName = "LAN_WRITE_TALENTS";
+                break;
+            case "RITUALS":
+                tableName = "RITUALS_TALENTS";
+                break;
+        }
+        try{
+            ResultSet resultSet = executeSQL("SELECT * FROM " + tableName + " WHERE NAME='" + talentName + "'");
+            if(resultSet.next()){
+                talentID = resultSet.getInt(1);
+                System.out.println(talentString);
+                String newTalentString = "";
+                int i = 0;
+                ArrayList<String> subStrings = new ArrayList<>();
+                while(talentString.length() > 0){
+                    if (talentString.charAt(i) == ';'){
+                        subStrings.add(talentString.substring(0,i));
+                        talentString = talentString.substring(i+1);
+                        //System.out.println(subStrings.get(subStrings.size()-1));
+                        i = 0;
+                    }
+                    i+=1;
+                }
+                if (tableName.equals("FIGHT_TALENTS"))
+                for (String s : subStrings){
+                    if (Integer.parseInt(s.substring(0, s.indexOf('/'))) == talentID){
+                        s = talentID + "/" + value;
+                    }
+                    System.out.println(s);
+                    newTalentString += s+ ";";
+                }
+                System.out.println(newTalentString);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
     private Property.PropertyName convertPropertyName(String shorted){
         if(shorted.equals("MU") || shorted.equals("mu")){
             return Property.PropertyName.MUT;

@@ -368,7 +368,7 @@ public class MainController extends AnchorPane {
     public void editHero(){
         GameMastR.setScene("editHero");
     }
-
+    public void showAdventure(){GameMastR.setScene("Adventure");}
     public void showCreateHero(){
         GameMastR.setScene("createChar");
     }

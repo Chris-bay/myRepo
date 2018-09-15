@@ -14,8 +14,27 @@
           <Menu mnemonicParsing="false" text="Helden">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#loadFromExcel" text="Aus Excel importieren" />
-                  <MenuItem mnemonicParsing="false" onAction="#showCreateHero" text="Neu" />
+                  <MenuItem mnemonicParsing="false" text="Neu" />
                   <MenuItem mnemonicParsing="false" text="Öffnen" />
+                  <Menu mnemonicParsing="false" text="Exportieren">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Datenbank exportieren" />
+                        <Menu mnemonicParsing="false" text="Als PDF">
+                           <items>
+                              <Menu mnemonicParsing="false" text="Alle">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                                </items>
+                              </Menu>
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Als binaries">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Alle" />
+                          </items>
+                        </Menu>
+                    </items>
+                  </Menu>
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Schließen" />
             </items>
@@ -26,6 +45,11 @@
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Abenteuer">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showAdventure" text="Starte Abenteuer" />
+               </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />

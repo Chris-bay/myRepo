@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adventure.AGUI.AdventureController">
+   <children>
+      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="Heros" />
+          <Menu mnemonicParsing="false" text="Maps">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#addCityMap" text="City Map" />
+                  <MenuItem mnemonicParsing="false" text="Geographic Map" />
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="NPCs" />
+        </menus>
+      </MenuBar>
+      <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Button layoutX="908.0" layoutY="14.0" mnemonicParsing="false" onAction="#drawMap" text="Button" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

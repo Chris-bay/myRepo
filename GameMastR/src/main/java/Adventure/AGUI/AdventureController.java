@@ -52,11 +52,12 @@ public class AdventureController {
     }
 
     public void drawMap(){
+        /*
         System.out.println();
         System.out.println("##########################################");
         System.out.println("################ Draw Map ################");
         System.out.println("##########################################");
-        System.out.println();
+        System.out.println();//*/
         Canvas canvas = (Canvas)((AnchorPane)panes.get(panes.size()-1).getContent()).getChildren().get(0);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         cityMapGenerator.createMap(gc);

@@ -1,5 +1,7 @@
 package Adventure.triangulation;
 
+import java.util.ArrayList;
+
 /**
  * 2D vector class implementation.
  * 
@@ -9,6 +11,7 @@ public class Vector2D {
 
     public double x;
     public double y;
+    public ArrayList<Vector2D> adjacent = new ArrayList<>();
 
     /**
      * Constructor of the 2D vector class used to create new vector instances.
@@ -91,7 +94,10 @@ public class Vector2D {
 
     @Override
     public String toString() {
-        return "Vector2D[" + x + ", " + y + "]";
+        return "[" + x + ", " + y + "]";
     }
 
+    public boolean equals(Vector2D other){
+        return ((this.x == other.x) && (this.y == other.y));
+    }
 }

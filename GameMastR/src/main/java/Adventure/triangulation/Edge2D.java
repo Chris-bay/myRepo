@@ -24,4 +24,12 @@ public class Edge2D {
         this.b = b;
     }
 
+    @Override
+    public String toString() {
+        return "[" + a + "," + b + "]";
+    }
+
+    public boolean equals(Edge2D other) {
+        return this.a.equals(other.a) && this.b.equals(other.b) || this.a.equals(other.b) && this.b.equals(other.a);
+    }
 }

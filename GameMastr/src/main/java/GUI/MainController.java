@@ -56,7 +56,6 @@ public class MainController extends AnchorPane {
     public void initialize(){
         heroDropDown.getItems().add("Alle Helden");
         loadAndDisplayAllHeros();
-        //dbOverwatch.parseFightTalents("5/0A0P1;7/1A1P0;9/0A0P0;15/1A1P0;16/0A1P0;17/0A1P0;19/3A2P0;21/1A0P0;23/0A0P0;");
     }
 
     public void setText(String text){

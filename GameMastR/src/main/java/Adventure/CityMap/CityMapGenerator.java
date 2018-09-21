@@ -27,9 +27,11 @@ public class CityMapGenerator {
     Vector2D middlePoint;
 
     private int count;
-    private int radius;
-    private double shrinkage = 5;
-    private double size = 120;
+    private final int radius = 5;
+    private final double shrinkage = 5;
+    private final double size = 120;
+    private final double edgeWidth = 4;
+    private final int subdevisions = 5;
 
     boolean drawStartPoints = AdventureController.drawStartPointsPreset;
     boolean drawPolyPoints = AdventureController.drawPolyPointsPreset;
@@ -38,10 +40,12 @@ public class CityMapGenerator {
 
     boolean fillPolyUnicolor = AdventureController.fillPolyUnicolorPreset;
 
-    Paint polyEdgeColor = Color.color(0,0,0);
-    Paint polyPointColor = Color.color(1,0,0);
-    Paint startPointColor = Color.color(0.3,0.5,0.3);
-    Paint polyFillColor = Color.rgb(212, 166, 146);
+    private final Paint polyEdgeColor = Color.color(0,0,0);
+    private final Paint polyPointColor = Color.color(1,0,0);
+    private final Paint startPointColor = Color.color(0.3,0.5,0.3);
+    //private final Paint polyFillColor = Color.rgb(212, 166, 146);
+    private final Paint polyFillColor = Color.rgb(188, 188, 188);
+    private final Paint backgroundColor = Color.rgb(248, 248, 248);
 
     public GraphicsContext createMap() {
         try {
@@ -62,7 +66,8 @@ public class CityMapGenerator {
 
             for (Vector2D p : pointSet) {
                 Polygon2D poly = new Polygon2D();
-                poly.points = getVoronoiDiagram(p, findConnectedTriangles(p, triangleSoup));
+                poly.setPoints(getVoronoiDiagram(p, findConnectedTriangles(p, triangleSoup)));
+                poly.subDivide(subdevisions);
                 polygons.add(poly);
                 shrinkedPolygons.add(shrink(poly, shrinkage));
             }
@@ -77,28 +82,29 @@ public class CityMapGenerator {
         clear();
 
         for (Polygon2D polygon : shrinkedPolygons) {
-            if (polygon.points.size() > 1) {
+            ArrayList<Vector2D> points = polygon.getPoints();
+            if (points.size() > 1) {
                 boolean drawOnce = true;
-                for (Vector2D v : polygon.points) {
+                for (Vector2D v : points) {
                     if (drawPolyPoints) {
                         gc.setFill(polyPointColor);
                         gc.fillOval(v.x - radius / 2f, v.y - radius / 2f, radius, radius);
                     }
-                    if (v.sub(middlePoint).mag() < size) {
-                        if (drawOnce && drawFillPoly) {
-                            gc.setFill(polyFillColor);
-                            fillPolygon(polygon, gc);
-                            Vector2D prevPoint = polygon.points.get(polygon.points.size() - 1);
-                            for (Vector2D v1 : polygon.points){
-                                if (drawPolyEdges) {
-                                    gc.setStroke(polyEdgeColor);
-                                    gc.setLineWidth(2d);
-                                    gc.strokeLine(prevPoint.x, prevPoint.y, v1.x, v1.y);
-                                }
-                                prevPoint = v1;
+                    if (v.sub(middlePoint).mag() < size && drawOnce && drawFillPoly) {
+                        gc.setFill(polyFillColor);
+                        fillPolygon(polygon, gc);
+                        if (drawPolyEdges) {
+                            for (Edge2D edge2D: polygon.getEdges()) {
+                                gc.setStroke(polyEdgeColor);
+                                gc.setLineWidth(edgeWidth);
+                                gc.strokeLine(edge2D.a.x, edge2D.a.y, edge2D.b.x, edge2D.b.y);
                             }
-                            drawOnce = false;
+                            for (Vector2D subVector: polygon.subPoints){
+                                gc.setFill(polyEdgeColor);
+                                gc.fillOval(subVector.x - radius / 2f, subVector.y - radius / 2f, radius, radius);
+                            }
                         }
+                        drawOnce = false;
                     }
                 }
 
@@ -122,7 +128,6 @@ public class CityMapGenerator {
         shrinkedPolygons.clear();
         pointSet.clear();
         count = (height * width) / 2500;
-        radius = 5;
         middlePoint =  new Vector2D(width/2d, height/2d);
         /*
         drawStartPoints = AdventureController.drawStartPointsPreset;
@@ -133,12 +138,12 @@ public class CityMapGenerator {
     }
 
     public void clear(){
-        gc.setFill(Color.WHITE);
+        gc.setFill(backgroundColor);
         gc.fillRect(0, 0, width, height);
     }
 
     private void fillPolygon(Polygon2D polygon, GraphicsContext gc) {
-        ArrayList<Vector2D> points = polygon.points;
+        ArrayList<Vector2D> points = polygon.getPoints();
         double[] x = new double[points.size()];
         double[] y = new double[points.size()];
         for (int i = 0; i < points.size(); i++) {
@@ -242,10 +247,11 @@ public class CityMapGenerator {
 
     private Polygon2D shrink(Polygon2D polygon, double px) {
         Polygon2D pol = new Polygon2D();
-        if(polygon.points.size()>2) {
-            Vector2D p1 = polygon.points.get(polygon.points.size() - 2);
-            Vector2D p2 = polygon.points.get(polygon.points.size() - 1);
-            for (Vector2D p3 : polygon.points) {
+        ArrayList<Vector2D> points = polygon.getPoints();
+        if(points.size()>2) {
+            Vector2D p1 = points.get(points.size() - 2);
+            Vector2D p2 = points.get(points.size() - 1);
+            for (Vector2D p3 : points) {
                 Vector2D v1 = new Vector2D(p1.x - p2.x, p1.y - p2.y);
                 Vector2D v2 = new Vector2D(p3.x - p2.x, p3.y - p2.y);
                 double deg = getDegr(v1, v2);
@@ -258,7 +264,7 @@ public class CityMapGenerator {
 
                 halfing = halfing.mult(px / halfing.mag());
 
-                pol.points.add(p2.add(halfing));
+                pol.getPoints().add(p2.add(halfing));
 
                 p1 = p2;
                 p2 = p3;
@@ -266,6 +272,20 @@ public class CityMapGenerator {
             return pol;
         }
         return polygon;
+    }
+
+    public boolean hasJunction(Edge2D edge, Vector2D directionalVector, Vector2D startVector){
+        Vector2D startToA = new Vector2D(edge.a.x-startVector.x, edge.a.y-startVector.y);
+        Vector2D startToB = new Vector2D(edge.b.x-startVector.x, edge.b.y-startVector.y);
+        Vector2D startWithDir = new Vector2D(directionalVector.x+startVector.x, directionalVector.y+startVector.y);
+        double degAB = startToA.getDegr(startToB);
+        double degSA = startToB.getDegr(startWithDir);
+        double degSB = startToA.getDegr(startWithDir);
+        if (degAB<degSA && degAB < degSB){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     private Double getDegr(Vector2D v1, Vector2D v2) {

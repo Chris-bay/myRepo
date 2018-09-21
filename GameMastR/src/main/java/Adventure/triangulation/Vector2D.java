@@ -92,6 +92,10 @@ public class Vector2D {
         return this.y * vector.x - this.x * vector.y;
     }
 
+    public Double getDegr(Vector2D v2) {
+        return Math.acos(this.dot(v2) / (this.mag() * v2.mag()));
+    }
+
     @Override
     public String toString() {
         return "[" + x + ", " + y + "]";

@@ -24,6 +24,12 @@ public class Edge2D {
         this.b = b;
     }
 
+    public Edge2D(){}
+
+    public double length(){
+        return a.sub(b).mag();
+    }
+
     @Override
     public String toString() {
         return "[" + a + "," + b + "]";

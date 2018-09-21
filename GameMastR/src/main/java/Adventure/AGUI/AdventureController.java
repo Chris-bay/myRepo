@@ -77,9 +77,18 @@ public class AdventureController {
             }
         });
         drawFillPoly.setSelected(drawFillPolyPreset);
+        Menu newMap = new Menu("Generate");
+        MenuItem newMapItem = new MenuItem("new Map");
+        newMapItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                drawMap(newPane);
+            }
+        });
 
         debug.getItems().addAll(drawFillPoly, drawPolyEdges, drawPolyPoints, drawStartPoints);
-        menuBar.getMenus().add(debug);
+        newMap.getItems().add(newMapItem);
+        menuBar.getMenus().addAll(debug, newMap);
 
         newPane.menuBar = menuBar;
 
@@ -130,15 +139,16 @@ public class AdventureController {
     }
 
 
-    public void drawMap(){
+    public void drawMap(MapTitledPane mapTitledPane){
         /*
         System.out.println();
         System.out.println("##########################################");
         System.out.println("################ Draw Map ################");
         System.out.println("##########################################");
-        System.out.println();//*/
+        System.out.println();
+        //*/
 
-        GraphicsContext gc = mapPanes.get(mapPanes.size()-1).graphicsContext;
+        GraphicsContext gc = mapTitledPane.graphicsContext;
         cityMapGenerator.initialize(gc);
         cityMapGenerator.createMap();
         cityMapGenerator.draw();

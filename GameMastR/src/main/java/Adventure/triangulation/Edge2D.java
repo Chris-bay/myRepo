@@ -30,6 +30,10 @@ public class Edge2D {
         return a.sub(b).mag();
     }
 
+    public boolean contains(Vector2D vector2D){
+        return this.a.equals(vector2D) || this.b.equals(vector2D);
+    }
+
     @Override
     public String toString() {
         return "[" + a + "," + b + "]";

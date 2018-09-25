@@ -25,6 +25,10 @@ public class AdventureController {
     public static boolean drawPolyPointsPreset = false;
     public static boolean drawStartPointsPreset = false;
     public static boolean fillPolyUnicolorPreset = false;
+    public static boolean drawFillSubPoly = false;
+    public static boolean drawSubPolyEdges = true;
+    public static boolean drawSubPolyPoints = false;
+    public static boolean drawAll = true;
 
     public void initialize(){
         mainPane.getChildren().addAll(panes);
